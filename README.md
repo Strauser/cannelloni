@@ -10,7 +10,7 @@ You can encapsulate any code inside a Cannelloni, when you try to access it, eit
 - it's good data and your transformation happens correctly
 - the code threw an exception and when you try to manipulate it, it's thrown out of the Cannelloni ! So you better catch it before it goes all the way to the floor (or your shirt).
 
-In Future versions, I'm thinking about making throw a SplashingCannelloniException() even if it hold good data. Tell me what you think in the comments. Link and subscribe to my Youtube channel if you want more. Wait, no.
+In Future versions, I'm thinking about making it randomly throw a SplashingCannelloniException() even if it hold good data. Tell me what you think in the comments. Link and subscribe to my Youtube channel if you want more. Wait, no.
 
 ## Usage
 
