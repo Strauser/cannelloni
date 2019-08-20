@@ -20,17 +20,17 @@ class CannelloniTest extends WordSpec with MustMatchers {
       tsCannelloni.flatMap(sauce => Cannelloni(s"Cold $sauce")) mustBe Cannelloni("Cold Tomato Sauce")
     }
 
-    "smell good when out of the oven and checked for success with a good snif" in {
+    "smell good when sniffed right out of the oven" in {
       tsCannelloni.isSuccess mustBe true
     }
 
-    "still smell good when out of the oven and checked for failure with a good snif" in {
-      tsCannelloni.isSuccess mustBe true
+    "still smell good when sniffed right out of the oven, even when you think you may have gotten the recipe wrong" in {
+      tsCannelloni.isFailure mustBe false
     }
 
     "feel like watse when put in the garbage bin" in {
       def throwInTheGarbageBin(sauce: Any): Unit = {}
-      noException should be thrownBy tsCannelloni.foreach(sauce => throwInTheGarbageBin(sauce))
+      noException should be thrownBy tsCannelloni.foreach(throwInTheGarbageBin(_))
     }
 
   }
@@ -46,24 +46,24 @@ class CannelloniTest extends WordSpec with MustMatchers {
     }
 
     "smell like turd in your whole room when you heat it" in {
-      an [Exception] should be thrownBy tsCannelloni.map(sauce => s"Hot $sauce")
+      an [Exception] should be thrownBy tsCannelloni.map(turd => s"hot smelly turd")
     }
 
     "smell like turd and fall all over the floor when you try to transfer the turd into another Cannelloni" in {
-      an [Exception] should be thrownBy tsCannelloni.flatMap(sauce => Cannelloni(s"Cold $sauce"))
+      an [Exception] should be thrownBy tsCannelloni.flatMap(turd => Cannelloni(s"still turd"))
     }
 
-    "smell like turd when out of the oven" in {
+    "smell like turd when you snif it" in {
       an [Exception] should be thrownBy tsCannelloni.isSuccess
     }
 
-    "still smell like turd when out of the oven when you think you shouldn't have done that" in {
-      an [Exception] should be thrownBy  tsCannelloni.isSuccess
+    "still smell like turd when you snif it, even when you know you shouldn't" in {
+      an [Exception] should be thrownBy tsCannelloni.isFailure
     }
 
     "smell like turd even when you decide to put in the garbage bin" in {
       def throwInTheGarbageBin(sauce: Any): Unit = {}
-      an [Exception] should be thrownBy tsCannelloni.foreach(sauce => throwInTheGarbageBin(sauce))
+      an [Exception] should be thrownBy tsCannelloni.foreach(throwInTheGarbageBin(_))
     }
 
   }
